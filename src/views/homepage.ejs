@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <%- include('partials/header') %>
+<body style="margin : 0px; overflow: hidden;">
+    <div class="arjs-loader">
+        <div>Loading, please wait...</div>
+    </div>
+
+     <!-- a-frame scene -->
+    <a-scene
+        vr-mode-ui="enabled: false;"
+        renderer="logarithmicDepthBuffer: true;"
+        embedded
+        arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+    >
+        <a-nft
+            type="nft"
+            url='./markers/cruz/greco'
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5"
+        >
+            <a-entity
+                gltf-model='./assets/CesiumMan.glb'
+                scale="5 5 5"
+                position="50 150 0"
+            >
+            </a-entity>
+        </a-nft>
+    </a-scene>
+</body>
+</html>
