@@ -11,7 +11,7 @@ app.set("view engine", "ejs");
 app.use(require("./routes/"));
 
 //archivos estaticos
-app.use(express.static(path.join(__dirname, "public/")));
+app.use(express.static(path.join(__dirname, "public")));
 
 //modulos de node
 app.use('/scripts/', express.static(path.join(__dirname, "./node_modules/")));

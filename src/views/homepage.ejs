@@ -5,6 +5,7 @@
     <div class="arjs-loader">
         <div>Cargando experiencia</div>
     </div>
+
      <!-- a-frame scene -->
     <a-scene
         vr-mode-ui="enabled: false;"
@@ -14,19 +15,18 @@
     >
         <a-nft
             type="nft"
-            url='./markers/greco'
+            url= "assets/markers/greco"
             smooth="true"
-            smoothCount="5"
+            smoothCount="10"
             smoothTolerance=".01"
             smoothThreshold="5"
         >
-            <a-entity
-                gltf-model="./assets/CesiumMan.glb"
-                scale="100 100 100"
-                position="50 50 -60"
-            >
-            </a-entity>
+        <a-entity gltf-model="assets/models/CesiumMan.glb"
+        scale="200 200 200"
+        position="100 80 -200"
+        rotation= "-100 0 0"></a-entity>
         </a-nft>
+        <a-entity camera></a-entity>
     </a-scene>
 </body>
 </html>
