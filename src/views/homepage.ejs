@@ -5,45 +5,41 @@
     <div class="arjs-loader">
         <div>Cargando experiencia</div>
     </div>
-
      <!-- a-frame scene -->
     <a-scene
+        id="marker"
         vr-mode-ui="enabled: false;"
         renderer="logarithmicDepthBuffer: true;"
         embedded
         arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
     >
         <a-nft
-            type="nft"
-            url= "assets/markers/greco"
-            smooth="true"
-            smoothCount="10"
-            smoothTolerance=".01"
-            smoothThreshold="5"
+        type="nft"
+        id="imagen"
+        url= "assets/markers/greco"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5"
         >
-            <a-entity gltf-model="assets/models/Nubes.glb"
-                scale="100 100 100"
-                position="100 150 -300"></a-entity>
-
-            <a-entity gltf-model="assets/models/CesiumMan.glb"
-            scale="80 80 80"
-            position="200 80 -200"
-            rotation= "-100 0 0"
-            animation-mixer></a-entity>
-
-            <!--a-entity gltf-model="assets/models/CesiumMan.glb"
-            scale="80 80 80"
-            position="50 80 -200"
-            rotation= "-100 0 0"
-            animation-mixer></a-entity-->
-
-        <!--a-entity gltf-model="assets/models/Floating.glb"
-        scale="80 80 80"
-        position="280 -250 -200"
-        rotation= "-80 30 20"
-        animation-mixer></a-entity-->
+        <a-entity 
+        id= modelo
+        gltf-model="assets/models/juntos.glb"
+        scale="800 800 600"
+        rotation= "-90 0 0"
+        position = "140 100 -420"
+        animation-mixer      
+        >
+        </a-entity>        
         </a-nft>
         <a-entity camera></a-entity>
+        <!--script>
+            function positionModel(){
+                let datos = document.getElementById('marker').getBoundingClientRect();
+                return (datos.width / 2) + " " + (datos.height / 2) + " 200";
+                }
+            document.getElementById('chabon').position = positionModel();
+        </script-->
     </a-scene>
 </body>
 </html>
