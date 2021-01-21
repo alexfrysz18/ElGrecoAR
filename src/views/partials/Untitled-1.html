@@ -1,0 +1,32 @@
+position = <%        
+function positionModel(){
+let datos = document.getElementById('marker').getBoundingClientRect();
+return (datos.canvas.width / 2) + " " + (datos.canvas.height / 2) + " 200";
+}%>
+
+ <!--a-entity gltf-model="assets/models/Nubes.glb"
+scale="100 100 100"
+position="100 150 -300"></a-entity-->
+
+<a-entity 
+id="chabon"
+gltf-model="assets/models/CesiumMan.glb"
+scale="80 80 80"
+rotation= "-100 0 0"
+position = "50 80 -200"
+animation-mixer      
+>
+</a-entity>
+                
+<!--a-entity gltf-model="assets/models/CesiumMan.glb"
+    scale="80 80 80"
+    position="50 80 -200"
+    rotation= "-100 0 0"
+    position="200 80 -200"
+    animation-mixer></a-entity-->
+                    
+<!--a-entity gltf-model="assets/models/Floating.glb"
+scale="80 80 80"
+position="280 -250 -200"
+rotation= "-80 30 20"
+animation-mixer></a-entity-->
