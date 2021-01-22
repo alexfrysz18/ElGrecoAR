@@ -31,6 +31,7 @@
           position="140 100 -420"
         >
         </a-entity>
+        <a-sound id="sonido" src="assets/sound/ipanema.mp3" position="0 2 5" sound= "true" volume ="10"></a-sound>
       </a-nft>
       <a-entity camera></a-entity>
 
@@ -39,11 +40,16 @@
   <script>
     let nft = document.querySelector("a-nft");
     let model = document.querySelector("[gltf-model]").components["gltf-model"].el;
+    let sound = document.querySelector("a-sound");
     nft.addEventListener("markerFound",() => {
-        model.setAttribute('animation-mixer', "clampWhenFinished: true; loop: once");
+        model.setAttribute('animation-mixer', "loop: once; clampWhenFinished: true");
+        console.log(sound.getAttribute());
+        sound.setAttribute('autoplay', 'true');
+       /* sound.setAttribute('sound', 'true');*/
     });
     nft.addEventListener("markerLost",() => {
-        model.removeAttribute('animation-mixer');
+      model.removeAttribute('animation-mixer');
+      sound.removeAttribute('autoplay');
     });
 
 
