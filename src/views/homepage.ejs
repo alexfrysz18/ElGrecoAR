@@ -13,6 +13,14 @@
       embedded
       arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
     >
+      <a-entity
+        id="texto"
+        text= "value: Apunte a la pintura; align: center; width: 6;"
+        visible = "false"
+        position= "0 100 -300"
+        scale = "50 50 50"
+      >
+      </a-entity>
       <a-nft
         type="nft"
         id="imagen"
@@ -46,18 +54,24 @@
     let nft = document.querySelector("a-nft");
     let model = document.querySelector("[gltf-model]").components["gltf-model"].el;
     let musica = document.getElementById("sonido");
+    let texto = document.getElementById("texto");
+    
+    window.addEventListener('arjs-nft-loaded',() => {
+      texto.setAttribute('visible', 'true');
+    });	
+
+
+
     nft.addEventListener("markerFound",() => {
         model.setAttribute('animation-mixer', "loop: once; clampWhenFinished: true");
         musica.components.sound.playSound();
-        /*sound.setAttribute('autoplay', 'true');*/
-       /* sound.setAttribute('sound', 'true');*/
+        texto.setAttribute('visible', 'false');
     });
+
     nft.addEventListener("markerLost",() => {
       model.removeAttribute('animation-mixer');
-     /* sound.removeAttribute('autoplay');*/
         musica.components.sound.stopSound();
+        texto.setAttribute('visible', 'true');
     });
-
-
   </script>
 </html>
