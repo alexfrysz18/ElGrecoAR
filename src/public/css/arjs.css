@@ -16,3 +16,10 @@
     font-size: 1.25em;
     color: white;
   }
+  @font-face{
+    font-family: fuenteMedieval;
+    src:url(./font/Medieval.ttf);
+  }
+  .text{
+    font-family: fuenteMedieval;
+  }
