@@ -3,7 +3,7 @@
   <%- include('partials/header') %>
   <body style="margin: 0px; overflow: hidden">
     <div class="arjs-loader">
-      <div>Cargando experiencia</div>
+      <div>Cargando El Greco AR...</div>
     </div>
     <!-- a-frame scene -->
     <a-scene
@@ -15,11 +15,20 @@
     >
       <a-entity
         id="texto"
-        text= "value: Apunte a la pintura; align: center; width: 6;"
         visible = "false"
         position= "0 100 -300"
         scale = "50 50 50"
       >
+      <a-text
+      value= "Apunte al cuadro"
+      align= "center"
+      width= "6"
+      font= "./css/fonts/Seagram-msdf.json"
+      fontImage = "./css/fonts/Seagram.png"
+      opacity= "1"
+      color= "black"
+      >
+      </a-text>
       <a-box 
         id="guia" 
         color="grey" 
@@ -49,7 +58,7 @@
 
         <a-entity 
           id="sonido"
-          sound= "src: url(assets/sound/ipanema.mp3)">        
+          sound= "src: url(assets/sound/Cantos 1.mp3)">        
         </a-entity>
         
       </a-nft>
