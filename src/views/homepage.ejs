@@ -19,76 +19,113 @@
         position= "0 100 -300"
         scale = "50 50 50"
       >
-      <a-text
-      value= "Apunte al cuadro"
-      align= "center"
-      width= "6"
-      font= "./css/fonts/Seagram-msdf.json"
-      fontImage = "./css/fonts/Seagram.png"
-      opacity= "1"
-      color= "black"
+        <a-text
+          value= "Apunte al cuadro"
+          align= "center"
+          width= "6"
+          font= "./css/fonts/Seagram-msdf.json"
+          fontImage = "./css/fonts/Seagram.png"
+          opacity= "1"
+          color= "black"
+        >
+        </a-text>
+        <a-box 
+          id="guia" 
+          color="grey" 
+          height="3" 
+          width="2" 
+          opacity="0.3"
+          position=" 0 -2.3 0">
+        </a-box>
+      </a-entity>
+      <a-entity
+        id="boton"
+        visible="false"
+        position= "0 100 -300"
+        scale = "50 50 50"
       >
-      </a-text>
-      <a-box 
-        id="guia" 
-        color="grey" 
-        height="3" 
-        width="2" 
-        opacity="0.3"
-        position=" 0 -2.3 0"></a-box>
+        <a-text
+          id="textoSonido"
+          value= "Toque para silenciar la musica"
+          align= "center"
+          width= "3"
+          opacity= "1"
+          color= "white"
+          position="-0.03 -3.52 1.2"
+        >
+        </a-text>
       </a-entity>
       <a-nft
-        type="nft"
-        id="imagen"
-        url="assets/markers/greco"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5"
-        emitevents="true"
+      type="nft"
+      id="imagen"
+      url="assets/markers/greco"
+      smooth="true"
+      smoothCount="10"
+      smoothTolerance=".01"
+      smoothThreshold="5"
+      emitevents="true"
       >
-        <a-entity
-          id="cielo"
-          gltf-model="assets/models/SM_Juntas.glb"
-          scale="900 1150 600"
-          rotation="-90 0 0"
-          position="110 200 -550"
-          opacity= "0.5"
-        >
-        <a/-entity>
-
-        <a-entity 
-          id="sonido"
-          sound= "src: url(assets/sound/SonidoGreco.mp3)">        
-        </a-entity>
-        
-      </a-nft>
-      <a-entity camera></a-entity>
-
-    </a-scene>
-  </body>
-  <script>
+      <a-entity
+        id="cielo"
+        gltf-model="assets/models/SM_Juntas.glb"
+        scale="900 1150 600"
+        rotation="-90 0 0"
+        position="110 200 -550"
+        opacity= "0.5">
+      <a/-entity>
+      
+      <a-entity 
+      id="sonido"
+      sound= "src: url(assets/sound/SonidoGreco.mp3)">        
+    </a-entity>
+  </a-nft>
+  <a-entity camera></a-entity>
+  
+</a-scene>
+</body>
+<script>
     let nft = document.querySelector("a-nft");
     let model = document.querySelector("[gltf-model]").components["gltf-model"].el;
     let musica = document.getElementById("sonido");
     let texto = document.getElementById("texto");
+    let boton = document.getElementById("boton");
+    let textoSonido = document.getElementById("textoSonido");
+    let encontrado = false;
     
     window.addEventListener('arjs-nft-loaded',() => {
       texto.setAttribute('visible', 'true');
     });	
-
-
-
+    
     nft.addEventListener("markerFound",() => {
-        model.setAttribute('animation-mixer', "loop: once; clampWhenFinished: true");
-        musica.components.sound.playSound();
-        texto.setAttribute('visible', 'false');
+      model.setAttribute('animation-mixer', "loop: once; clampWhenFinished: true");
+      musica.components.sound.playSound();
+      texto.setAttribute('visible', 'false');
+      boton.setAttribute('visible', 'true');
+      encontrado = true;
     });
-
+    
     nft.addEventListener("markerLost",() => {
       model.removeAttribute('animation-mixer');
         musica.components.sound.stopSound();
         texto.setAttribute('visible', 'true');
+        boton.setAttribute('visible', 'false');
+        encontrado = false;
+        textoSonido.setAttribute('value', 'Toque para silenciar la musica')
+    });
+
+    window.addEventListener("click",() => {
+      if(encontrado == true){
+        if(textoSonido.components.text.attrValue.value == "Toque para silenciar la musica")
+        {
+          textoSonido.setAttribute('value', 'Toque para activar la musica')
+          musica.components.sound.stopSound();
+        }
+        else
+        {
+          textoSonido.setAttribute('value', 'Toque para silenciar la musica')
+          musica.components.sound.playSound();
+        }
+      }
     });
   </script>
 </html>
